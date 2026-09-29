@@ -1,704 +1,863 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>APS FUTSAL NOVO MARACANAÚ ⚽</title>
-<meta name="theme-color" content="#0d0d0d"/>
-<link rel="manifest" href="manifest.json"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-<style>
-:root{--bg-dark:#0d0d0d;--card-bg:rgba(24,24,24,.92);--card-border:#282828;--primary-green:#00e676;--accent-gold:#ffd700;--text-light:#f5f5f5;--text-muted:#aaa;--danger:#ff5252;--warning:#ffab00}
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg-dark);color:var(--text-light);display:flex;flex-direction:column;min-height:100vh;padding-bottom:75px}
-body.player .admin-only{display:none!important}
-header{background:rgba(24,24,24,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--card-border);padding:10px 15px;position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center}
-.header-brand{display:flex;align-items:center;gap:10px}
-.app-logo{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--primary-green);background:#222}
-header h1{font-size:.95rem;color:var(--primary-green);font-weight:800;line-height:1.2}
-.user-badge{font-size:.72rem;background:#252525;padding:5px 10px;border-radius:12px;border:1px solid var(--card-border);cursor:pointer}
-.container{padding:15px;max-width:600px;margin:0 auto;width:100%}
-.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:15px;margin-bottom:15px;box-shadow:0 4px 15px rgba(0,0,0,.6)}
-.card-title{font-size:.92rem;font-weight:bold;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #333;padding-bottom:8px}
-.live-clock-box{text-align:center;padding:8px;background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.3);border-radius:8px;margin-bottom:12px}
-.live-clock-text{font-size:1.4rem;font-weight:900;color:var(--primary-green);letter-spacing:1px;font-family:monospace}
-.btn{background:var(--primary-green);color:#000;border:none;padding:12px 18px;border-radius:8px;font-weight:bold;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;font-size:.9rem}
-.btn-gold{background:var(--accent-gold)}.btn-danger{background:var(--danger);color:#fff}
-.btn-outline{background:transparent;border:1px solid var(--card-border);color:var(--text-light)}
-.btn-sm{padding:5px 10px;font-size:.78rem;width:auto}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.stat-box{background:#202020;padding:10px;border-radius:8px;text-align:center;border:1px solid #2a2a2a}
-.stat-box .val{font-size:1.1rem;font-weight:bold}.stat-box .lbl{font-size:.65rem;color:var(--text-muted);text-transform:uppercase}
-.nav-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(24,24,24,.98);border-top:1px solid var(--card-border);display:flex;justify-content:space-around;padding:8px 0;z-index:1000}
-.nav-item{color:var(--text-muted);display:flex;flex-direction:column;align-items:center;font-size:.6rem;gap:3px;cursor:pointer;width:13%}
-.nav-item.active{color:var(--primary-green)}.nav-item i{font-size:1rem}
-.status-pill{display:inline-block;padding:4px 8px;border-radius:12px;font-size:.72rem;font-weight:bold}
-.pill-green{background:rgba(0,230,118,.15);color:var(--primary-green)}.pill-red{background:rgba(255,82,82,.15);color:var(--danger)}.pill-yellow{background:rgba(255,171,0,.15);color:var(--warning)}
-.player-item{padding:10px 0;border-bottom:1px solid #282828;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.88rem}
-.chart-bar-bg{background:#282828;border-radius:6px;height:8px;width:100%;overflow:hidden;margin-top:6px}
-.chart-bar-fill{background:linear-gradient(90deg,var(--warning),var(--primary-green));height:100%;border-radius:6px}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
-.gallery-item{position:relative;width:100%;padding-top:100%;border-radius:8px;overflow:hidden;background:#222;border:1px solid var(--card-border)}
-.gallery-item img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
-.preview-box{margin-top:10px;text-align:center;display:none}.preview-box img{max-width:100%;max-height:200px;border-radius:8px;border:1px solid var(--primary-green)}
-.chat-box{height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:5px;margin-bottom:10px}
-.chat-msg{background:#222;padding:8px 12px;border-radius:8px;max-width:85%;font-size:.82rem;border:1px solid #2d2d2d}
-.chat-msg.self{align-self:flex-end;background:rgba(0,230,118,.15);border-color:rgba(0,230,118,.3)}
-.chat-msg-header{font-size:.7rem;color:var(--text-muted);margin-bottom:3px}
-.form-group{margin-bottom:12px}.form-group label{display:block;font-size:.8rem;color:var(--text-muted);margin-bottom:4px}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px;background:#222;border:1px solid var(--card-border);color:#fff;border-radius:6px;font-size:.9rem}
-.tab-content{display:none}.tab-content.active{display:block}
-.team-card{margin-bottom:10px}.team-card h4{color:var(--accent-gold);font-size:.85rem;margin-bottom:6px}.team-card div{font-size:.85rem;padding:2px 0}
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>APS FUTSAL NOVO MARACANAÚ ⚽</title>
+    <meta name="theme-color" content="#0d0d0d"/>
+    <link rel="manifest" href="manifest.json"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        :root {
+            --bg-dark: #0d0d0d;
+            --card-bg: rgba(24, 24, 24, 0.92);
+            --card-border: #282828;
+            --primary-green: #00e676;
+            --accent-gold: #ffd700;
+            --text-light: #f5f5f5;
+            --text-muted: #aaaaaa;
+            --danger: #ff5252;
+            --warning: #ffab00;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg-dark); background-size: cover; background-position: center; background-attachment: fixed; color: var(--text-light); display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 75px; transition: background 0.3s ease; }
+        header { background-color: rgba(24, 24, 24, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--card-border); padding: 10px 15px; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+        .header-brand { display: flex; align-items: center; gap: 10px; }
+        .app-logo { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-green); background: #222; }
+        header h1 { font-size: 0.95rem; color: var(--primary-green); font-weight: 800; line-height: 1.2; }
+        .user-badge { font-size: 0.72rem; background: #252525; padding: 5px 10px; border-radius: 12px; border: 1px solid var(--card-border); cursor: pointer; }
+        .container { padding: 15px; max-width: 600px; margin: 0 auto; width: 100%; }
+        .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.6); backdrop-filter: blur(6px); }
+        .card-title { font-size: 0.92rem; font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #333; padding-bottom: 8px; }
+        .live-clock-box { text-align: center; padding: 8px; background: rgba(0, 230, 118, 0.1); border: 1px solid rgba(0, 230, 118, 0.3); border-radius: 8px; margin-bottom: 12px; }
+        .live-clock-text { font-size: 1.4rem; font-weight: 900; color: var(--primary-green); letter-spacing: 1px; font-family: monospace; }
+        .btn { background: var(--primary-green); color: #000; border: none; padding: 12px 18px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; font-size: 0.9rem; }
+        .btn-gold { background: var(--accent-gold); color: #000; }
+        .btn-danger { background: var(--danger); color: #fff; }
+        .btn-outline { background: transparent; border: 1px solid var(--card-border); color: var(--text-light); }
+        .btn-sm { padding: 5px 10px; font-size: 0.78rem; width: auto; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+        .stat-box { background: #202020; padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #2a2a2a; }
+        .stat-box .val { font-size: 1.1rem; font-weight: bold; color: var(--primary-green); }
+        .stat-box .lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
+        .nav-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(24, 24, 24, 0.98); border-top: 1px solid var(--card-border); display: flex; justify-content: space-around; padding: 8px 0; z-index: 1000; }
+        .nav-item { color: var(--text-muted); text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 0.6rem; gap: 3px; cursor: pointer; width: 13%; }
+        .nav-item.active { color: var(--primary-green); }
+        .nav-item i { font-size: 1rem; }
+        .status-pill { display: inline-block; padding: 4px 8px; border-radius: 12px; font-size: 0.72rem; font-weight: bold; }
+        .pill-green { background: rgba(0,230,118,0.15); color: var(--primary-green); }
+        .pill-red { background: rgba(255,82,82,0.15); color: var(--danger); }
+        .pill-yellow { background: rgba(255,171,0,0.15); color: var(--warning); }
+        .player-item { padding: 12px 0; border-bottom: 1px solid #282828; }
+        .player-item-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .player-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 1px solid var(--card-border); background: #252525; }
+        .player-info-meta { display: flex; align-items: center; gap: 10px; flex: 1; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+        .gallery-item { position: relative; width: 100%; padding-top: 100%; border-radius: 8px; overflow: hidden; background: #222; border: 1px solid var(--card-border); }
+        .gallery-item img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .preview-box { margin-top: 10px; text-align: center; display: none; }
+        .preview-box img { max-width: 100%; max-height: 200px; border-radius: 8px; border: 1px solid var(--primary-green); }
+        .chart-bar-bg { background: #282828; border-radius: 6px; height: 8px; width: 100%; overflow: hidden; margin-top: 6px; }
+        .chart-bar-fill { background: linear-gradient(90deg, var(--warning), var(--primary-green)); height: 100%; border-radius: 6px; width: 0%; transition: width 0.4s ease; }
+        .chat-box { height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 5px; margin-bottom: 10px; }
+        .chat-msg { background: #222; padding: 8px 12px; border-radius: 8px; max-width: 85%; font-size: 0.82rem; border: 1px solid #2d2d2d; }
+        .chat-msg.self { align-self: flex-end; background: rgba(0, 230, 118, 0.15); border-color: rgba(0, 230, 118, 0.3); }
+        .chat-msg-header { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 3px; }
+        .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 15px; }
+        .modal-content { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; padding: 20px; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; background: #222; border: 1px solid var(--card-border); color: #fff; border-radius: 6px; font-size: 0.9rem; }
+        .date-inputs-group { display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 8px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
 
-/* MODAL CADASTRO */
-.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:2000;padding:15px}
-.modal-content{background:#181818;border:1px solid var(--card-border);border-radius:12px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;padding:20px}
-.pf-avatar{width:110px;height:110px;border-radius:50%;margin:0 auto;background:#252525;border:2px solid var(--primary-green);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:2.4rem;color:var(--text-muted)}
-.pf-avatar img,.mini-av{width:100%;height:100%;object-fit:cover}
-.mini-av-box{width:42px;height:42px;border-radius:50%;overflow:hidden;background:#252525;border:1px solid var(--card-border);display:inline-flex;align-items:center;justify-content:center;color:var(--text-muted);flex-shrink:0}
-
-/* DATA E ONLINE */
-.date-inputs-group{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:8px}
-.date-inputs-group input{text-align:center}
-.online-bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px;font-size:.75rem;color:var(--text-muted)}
-.online-chip{background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.3);color:var(--text-light);border-radius:12px;padding:3px 9px;font-size:.75rem}
-.online-chip:before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--primary-green);margin-right:6px}
-
-/* UPLOAD DE FOTO */
-.upload-btn{position:relative;overflow:hidden;cursor:pointer}
-.upload-btn input[type=file]{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:100px}
-
-/* SORTEIO */
-.sg{margin-bottom:14px}.sg-t{font-size:.8rem;font-weight:bold;color:var(--accent-gold);margin-bottom:6px}
-.sg input{width:100%;padding:9px;background:#222;border:1px solid var(--card-border);color:#fff;border-radius:6px;font-size:.85rem;margin-bottom:6px}
-
-/* CAMPEONATO */
-.camp-names{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.camp-names input,.camp-in{width:100%;padding:9px;background:#222;border:1px solid var(--card-border);color:#fff;border-radius:6px;font-size:.85rem}
-.camp-round-title{font-size:.8rem;color:var(--accent-gold);font-weight:bold;margin:10px 0 6px}
-.camp-match{display:grid;grid-template-columns:1fr 46px 12px 46px 1fr;gap:5px;align-items:center;margin-bottom:7px;font-size:.82rem}
-.camp-match .r{text-align:right}
-.camp-match input{width:100%;padding:8px 2px;text-align:center;background:#222;border:1px solid var(--card-border);color:#fff;border-radius:6px;font-size:.95rem;font-weight:bold}
-.camp-match b{text-align:center;color:var(--text-muted)}
-.camp-extra{display:grid;grid-template-columns:1fr 42px 12px 42px 1fr 30px;gap:4px;align-items:center;margin-bottom:7px}
-.camp-extra input{width:100%;padding:8px 3px;background:#222;border:1px solid var(--card-border);color:#fff;border-radius:6px;font-size:.8rem}
-.camp-extra input.sc{text-align:center;font-weight:bold}
-.camp-table-wrap{overflow-x:auto}
-.camp-table{width:100%;border-collapse:collapse;font-size:.75rem;text-align:center}
-.camp-table th{color:var(--text-muted);font-weight:600;padding:6px 3px;border-bottom:1px solid #333}
-.camp-table td{padding:7px 3px;border-bottom:1px solid #262626}
-.camp-table td.tn{text-align:left;white-space:nowrap;font-weight:bold}
-.camp-table td.pts{color:var(--primary-green);font-weight:900}
-.camp-table tr.first td{color:var(--accent-gold)}.camp-table tr.last td.tn{color:var(--danger)}
-.camp-award{background:#202020;border:1px solid #2a2a2a;border-radius:10px;padding:12px;margin-top:10px}
-.camp-award h4{font-size:.85rem;margin-bottom:8px}.camp-award .show{margin-top:8px;font-size:1rem;font-weight:900}
-</style>
+        /* LOGIN */
+        #loginScreen { position: fixed; inset: 0; z-index: 1500; background: var(--bg-dark); display: flex; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+        .login-box { width: 100%; max-width: 380px; }
+        .login-logo { text-align: center; margin-bottom: 18px; }
+        .login-logo img { width: 72px; height: 72px; border-radius: 50%; border: 2px solid var(--primary-green); background: #222; }
+        .login-logo h2 { color: var(--primary-green); font-size: 1.1rem; margin-top: 8px; }
+        .login-logo small { color: var(--text-muted); }
+        .login-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+        .login-tab { padding: 10px; border-radius: 8px; border: 1px solid var(--card-border); background: #1c1c1c; color: var(--text-muted); font-weight: bold; text-align: center; cursor: pointer; font-size: 0.85rem; }
+        .login-tab.active { background: rgba(0,230,118,0.15); color: var(--primary-green); border-color: var(--primary-green); }
+        .login-error { color: var(--danger); font-size: 0.8rem; text-align: center; min-height: 18px; margin-top: 6px; }
+        body.logged-out header, body.logged-out .container, body.logged-out .nav-bar { visibility: hidden; }
+    </style>
 </head>
-<body>
+<body class="logged-out">
 
-<header>
-  <div class="header-brand">
-    <img src="https://cdn-icons-png.flaticon.com/512/53/53283.png" class="app-logo" alt="Logo"/>
-    <div><h1>APS FUTSAL</h1><small style="color:var(--text-muted);font-size:.68rem">NOVO MARACANAÚ</small></div>
-  </div>
-  <div class="user-badge" id="userRoleBadge" onclick="toggleRole()">Perfil: ADMIN</div>
-</header>
-
-<div class="container">
-
-<!-- INÍCIO -->
-<div id="tab-inicio" class="tab-content active">
-  <div class="live-clock-box">
-    <small style="color:var(--text-muted);font-size:.7rem">HORA EM TEMPO REAL</small>
-    <div class="live-clock-text" id="liveClock">00:00:00</div>
-  </div>
-  <div class="card" style="border-left:4px solid var(--accent-gold)">
-    <div class="card-title"><span><i class="fa-solid fa-bullhorn" style="color:var(--accent-gold)"></i> AVISO DA DIRETORIA</span>
-      <button class="btn btn-outline btn-sm admin-only" onclick="editNotice()"><i class="fa-solid fa-pen"></i></button></div>
-    <p id="noticeText" style="font-size:.88rem;color:#ddd;white-space:pre-line"></p>
-  </div>
-  <div class="card">
-    <div class="card-title"><span><i class="fa-regular fa-calendar-check"></i> PRÓXIMO RACHA</span></div>
-    <div class="grid-2" style="margin-bottom:10px">
-      <div><small style="color:var(--text-muted)">Dia/Hora:</small><br/><strong id="infoDateTime"></strong></div>
-      <div><small style="color:var(--text-muted)">Local:</small><br/><strong id="infoLocation"></strong></div>
+    <!-- TELA DE LOGIN -->
+    <div id="loginScreen">
+        <div class="login-box">
+            <div class="login-logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/53/53283.png" alt="Logo"/>
+                <h2>APS FUTSAL</h2>
+                <small>NOVO MARACANAÚ</small>
+                <div style="font-size:0.6rem;color:#555;margin-top:4px;">versão login 3</div>
+            </div>
+            <div class="card">
+                <div class="login-tabs">
+                    <div class="login-tab active" id="tabLoginJogador" onclick="setLoginMode('JOGADOR')"><i class="fa-solid fa-futbol"></i> Jogador</div>
+                    <div class="login-tab" id="tabLoginAdmin" onclick="setLoginMode('ADMIN')"><i class="fa-solid fa-user-shield"></i> Administrador</div>
+                </div>
+                <form id="loginForm" autocomplete="off">
+                    <div class="form-group">
+                        <label id="loginUserLabel">Apelido:</label>
+                        <input type="text" id="loginUser" placeholder="Seu apelido" required="required" autocapitalize="off" autocorrect="off" spellcheck="false"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha:</label>
+                        <input type="password" id="loginPass" placeholder="Sua senha" required="required" autocapitalize="off" autocorrect="off"/>
+                    </div>
+                    <button type="submit" class="btn"><i class="fa-solid fa-right-to-bracket"></i> ENTRAR</button>
+                    <div class="login-error" id="loginError"></div>
+                </form>
+                <button class="btn btn-outline" id="btnNovoCadastro" onclick="openPlayerModal()"><i class="fa-solid fa-user-plus"></i> Sou novo, quero me cadastrar</button>
+            </div>
+        </div>
     </div>
-    <div id="listWindowStatus" class="status-pill pill-yellow" style="margin-bottom:12px;width:100%;text-align:center"></div>
-    <div id="minQuotaBadge" class="status-pill pill-yellow" style="margin-bottom:12px;width:100%;text-align:center"></div>
-    <div class="grid-2">
-      <button class="btn" onclick="confirmPresence(true)"><i class="fa-solid fa-check"></i> VOU</button>
-      <button class="btn btn-danger" onclick="confirmPresence(false)"><i class="fa-solid fa-xmark"></i> NÃO VOU</button>
+
+    <header>
+        <div class="header-brand">
+            <img src="https://cdn-icons-png.flaticon.com/512/53/53283.png" id="appLogoImg" class="app-logo" alt="Logo"/>
+            <div>
+                <h1>APS FUTSAL</h1>
+                <small style="color:var(--text-muted); font-size: 0.68rem;">NOVO MARACANAÚ</small>
+            </div>
+        </div>
+        <div class="user-badge" id="userRoleBadge" onclick="logout()">Sair</div>
+    </header>
+
+    <div class="container">
+
+        <!-- INÍCIO -->
+        <div id="tab-inicio" class="tab-content active">
+            <div class="live-clock-box">
+                <small style="color:var(--text-muted); font-size: 0.7rem;">HORA EM TEMPO REAL</small>
+                <div class="live-clock-text" id="liveClock">00:00:00</div>
+            </div>
+
+            <div class="card" id="announcementCard" style="border-left: 4px solid var(--accent-gold);">
+                <div class="card-title">
+                    <span><i class="fa-solid fa-bullhorn" style="color: var(--accent-gold);"></i> AVISO DA DIRETORIA</span>
+                    <button class="btn btn-outline btn-sm admin-only" onclick="openEditNotice()"><i class="fa-solid fa-pen"></i></button>
+                </div>
+                <p id="noticeText" style="font-size: 0.88rem; color: #ddd; white-space: pre-line;">Carregando avisos...</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><span><i class="fa-regular fa-calendar-check"></i> PRÓXIMO RACHA</span></div>
+                <div class="grid-2" style="margin-bottom: 10px;">
+                    <div><small style="color:var(--text-muted)">Dia/Hora:</small><br/><strong id="infoDateTime">Domingo - 08:00</strong></div>
+                    <div><small style="color:var(--text-muted)">Local:</small><br/><strong id="infoLocation">Novo Maracanaú</strong></div>
+                </div>
+                <div id="listWindowStatus" class="status-pill pill-yellow" style="margin-bottom: 12px; width: 100%; text-align: center;">Verificando janela da lista...</div>
+                <div id="minQuotaBadge" class="status-pill pill-yellow" style="margin-bottom: 12px; width: 100%; text-align: center;">Verificando quorum...</div>
+                <div class="grid-2">
+                    <button class="btn" id="btnVou" onclick="confirmPresence(true)"><i class="fa-solid fa-check"></i> VOU</button>
+                    <button class="btn btn-danger" id="btnNaoVou" onclick="confirmPresence(false)"><i class="fa-solid fa-xmark"></i> NÃO VOU</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LISTA -->
+        <div id="tab-lista" class="tab-content">
+            <div class="card admin-only">
+                <div class="card-title"><span><i class="fa-solid fa-clock"></i> AGENDAMENTO DA LISTA (ADMIN)</span></div>
+                <div class="form-group"><label>Abertura da Lista (Data/Hora):</label><input type="datetime-local" id="cfgListOpen"/></div>
+                <div class="form-group"><label>Encerramento da Lista (Data/Hora):</label><input type="datetime-local" id="cfgListClose"/></div>
+                <button class="btn btn-outline" onclick="saveListSchedule()">SALVAR AGENDAMENTO</button>
+            </div>
+            <div class="card">
+                <div class="card-title"><span>JOGADORES DE LINHA (<span id="cntLinha">0</span>/25)</span></div>
+                <div id="listLinha"></div>
+            </div>
+            <div class="card">
+                <div class="card-title"><span>GOLEIROS (<span id="cntGoleiro">0</span>/5)</span></div>
+                <div id="listGoleiro"></div>
+            </div>
+            <div class="card">
+                <div class="card-title"><span>FILA DE RESERVA</span></div>
+                <div id="listReserva"></div>
+            </div>
+        </div>
+
+        <!-- CHAT -->
+        <div id="tab-chat" class="tab-content">
+            <div class="card">
+                <div class="card-title"><span><i class="fa-solid fa-comments"></i> CHAT DOS INTEGRANTES</span></div>
+                <div class="chat-box" id="chatBox"></div>
+                <div style="display:flex; gap:8px;">
+                    <input type="text" id="chatInput" placeholder="Digite sua mensagem..." style="flex:1; padding:10px; background:#222; border:1px solid var(--card-border); color:#fff; border-radius:6px;"/>
+                    <button class="btn btn-sm" onclick="sendChatMessage()" style="width:auto; padding:0 15px;"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOCIAL -->
+        <div id="tab-social" class="tab-content">
+            <div class="card">
+                <div class="card-title"><span><i class="fa-solid fa-camera"></i> PUBLICAÇÃO SOCIAL DO TIME</span></div>
+                <div class="form-group">
+                    <label>Selecione uma foto (Qualquer Formato):</label>
+                    <input type="file" id="socialPhotoInput" accept="image/*" onchange="previewSocialPhoto(this)"/>
+                </div>
+                <div class="preview-box" id="socialPreviewBox">
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:5px;">Pré-visualização da Imagem:</p>
+                    <img id="socialPreviewImg" src="#" alt="Pré-visualização"/>
+                    <button class="btn btn-gold" style="margin-top:10px;" onclick="submitPhotoToGallery()"><i class="fa-solid fa-upload"></i> ENVIAR PARA A GALERIA DO APP</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title"><span><i class="fa-solid fa-images"></i> GALERIA DE FOTOS DO APP</span></div>
+                <div class="gallery-grid" id="socialGallery"></div>
+            </div>
+        </div>
+
+        <!-- PERFIL -->
+        <div id="tab-assiduidade" class="tab-content">
+            <div class="card">
+                <div class="card-title"><span><i class="fa-solid fa-id-card"></i> CADASTRO / PERFIL DO JOGADOR</span></div>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">Atualize seus dados de cadastro de integrante no sistema:</p>
+                <button class="btn btn-gold" onclick="openMyProfile()"><i class="fa-solid fa-user-pen"></i> PREENCHER/EDITAR MEU CADASTRO</button>
+            </div>
+            <div class="card">
+                <div class="card-title"><span><i class="fa-solid fa-chart-line"></i> ASSIDUIDADE E DESEMPENHO</span></div>
+                <div id="assiduidadeList"></div>
+            </div>
+        </div>
+
+        <!-- SORTEIO -->
+        <div id="tab-racha" class="tab-content">
+            <div class="card admin-only">
+                <div class="card-title"><span><i class="fa-solid fa-dice"></i> SORTEADOR EQUILIBRADO</span></div>
+                <div class="form-group">
+                    <label>Quantidade de Times:</label>
+                    <select id="numTeamsSelect">
+                        <option value="2">2 Times</option>
+                        <option value="3">3 Times</option>
+                        <option value="4" selected="selected">4 Times</option>
+                        <option value="5">5 Times</option>
+                    </select>
+                </div>
+                <button class="btn btn-gold" onclick="drawTeams()"><i class="fa-solid fa-shuffle"></i> SORTEAR TIMES</button>
+            </div>
+            <div id="teamsContainer">
+                <p style="text-align: center; color: var(--text-muted); margin-top: 20px;">Nenhum sorteio ativo.</p>
+            </div>
+        </div>
+
+        <!-- FINANCEIRO -->
+        <div id="tab-mensalidades" class="tab-content">
+            <div class="card admin-only">
+                <div class="card-title"><span><i class="fa-solid fa-wallet"></i> CAIXA DO MÊS (ADMINISTRADOR)</span></div>
+                <div class="grid-3">
+                    <div class="stat-box"><div class="val" style="color:var(--primary-green)" id="finArrecadado">R$ 0</div><div class="lbl">Adimplente</div></div>
+                    <div class="stat-box"><div class="val" style="color:var(--warning)" id="finPendente">R$ 0</div><div class="lbl">Inadimplente</div></div>
+                    <div class="stat-box"><div class="val" style="color:var(--danger)" id="finAtrasado">R$ 0</div><div class="lbl">Atrasado</div></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title"><span>SITUAÇÃO FINANCEIRA</span></div>
+                <div id="financialList"></div>
+            </div>
+        </div>
+
+        <!-- ADMIN -->
+        <div id="tab-admin" class="tab-content">
+            <div class="card">
+                <div class="card-title"><span><i class="fa-solid fa-key"></i> SENHA DO ADMINISTRADOR</span></div>
+                <div class="form-group">
+                    <label>Nova senha (mínimo 4 caracteres):</label>
+                    <input type="password" id="newAdminPass" placeholder="Nova senha"/>
+                </div>
+                <button class="btn btn-outline" onclick="changeAdminPassword()">ALTERAR SENHA</button>
+            </div>
+            <div class="card">
+                <div class="card-title"><span><i class="fa-solid fa-user-plus"></i> GERENCIAR INTEGRANTES</span></div>
+                <button class="btn" onclick="openPlayerModal()"><i class="fa-solid fa-plus"></i> CADASTRAR JOGADOR</button>
+            </div>
+            <div class="card">
+                <div class="card-title"><span><i class="fa-solid fa-users"></i> ELENCO CADASTRADO</span></div>
+                <div id="adminPlayersList"></div>
+            </div>
+        </div>
+
     </div>
-  </div>
-  <div class="card" style="border-left:4px solid var(--primary-green)">
-    <div class="card-title"><span><i class="fa-solid fa-trophy" style="color:var(--accent-gold)"></i> CAMPEÕES DOS RACHAS</span></div>
-    <div id="histList"></div>
-  </div>
-</div>
 
-<!-- LISTA -->
-<div id="tab-lista" class="tab-content">
-  <div class="card admin-only">
-    <div class="card-title"><span><i class="fa-solid fa-clock"></i> AGENDAMENTO DA LISTA (ADMIN)</span></div>
-    <div class="form-group"><label>Abertura da Lista:</label><input type="datetime-local" id="cfgListOpen"/></div>
-    <div class="form-group"><label>Encerramento da Lista:</label><input type="datetime-local" id="cfgListClose"/></div>
-    <button class="btn btn-outline" onclick="saveListSchedule()">SALVAR AGENDAMENTO</button>
-  </div>
-  <div class="card"><div class="card-title"><span>JOGADORES DE LINHA (<span id="cntLinha">0</span>/25)</span></div><div id="listLinha"></div></div>
-  <div class="card"><div class="card-title"><span>GOLEIROS (<span id="cntGoleiro">0</span>/5)</span></div><div id="listGoleiro"></div></div>
-  <div class="card"><div class="card-title"><span>FILA DE RESERVA</span></div><div id="listReserva"></div></div>
-</div>
+    <nav class="nav-bar">
+        <div class="nav-item active" onclick="switchTab('inicio', this)"><i class="fa-solid fa-house"></i>Início</div>
+        <div class="nav-item" onclick="switchTab('lista', this)"><i class="fa-solid fa-list-ol"></i>Lista</div>
+        <div class="nav-item" onclick="switchTab('chat', this)"><i class="fa-solid fa-comments"></i>Chat</div>
+        <div class="nav-item" onclick="switchTab('social', this)"><i class="fa-solid fa-camera"></i>Social</div>
+        <div class="nav-item" onclick="switchTab('racha', this)"><i class="fa-solid fa-futbol"></i>Racha</div>
+        <div class="nav-item" onclick="switchTab('mensalidades', this)"><i class="fa-solid fa-dollar-sign"></i>Finanças</div>
+        <div class="nav-item" onclick="switchTab('assiduidade', this)"><i class="fa-solid fa-user"></i>Perfil</div>
+        <div class="nav-item admin-only-nav" onclick="switchTab('admin', this)"><i class="fa-solid fa-gear"></i>Admin</div>
+    </nav>
 
-<!-- CHAT -->
-<div id="tab-chat" class="tab-content">
-  <div class="card">
-    <div class="card-title"><span><i class="fa-solid fa-comments"></i> CHAT DOS INTEGRANTES</span></div>
-    <div class="form-group" style="margin-bottom:10px"><label>Você está no chat como:</label><select id="chatMe" onchange="selectChatMe(this.value)"></select></div>
-    <div class="online-bar" id="onlineBar"></div>
-    <div class="chat-box" id="chatBox"></div>
-    <div style="display:flex;gap:8px">
-      <input type="text" id="chatInput" placeholder="Digite sua mensagem..." style="flex:1;padding:10px;background:#222;border:1px solid var(--card-border);color:#fff;border-radius:6px"/>
-      <button class="btn btn-sm" onclick="sendChatMessage()" style="width:auto;padding:0 15px"><i class="fa-solid fa-paper-plane"></i></button>
+    <!-- MODAL DE CADASTRO -->
+    <div class="modal" id="playerModal">
+        <div class="modal-content">
+            <h3 style="margin-bottom: 15px;" id="modalPlayerTitle">Cadastro do Integrante</h3>
+            <form id="playerForm">
+                <input type="hidden" id="pId"/>
+                <div class="form-group">
+                    <label>Foto do Jogador (URL ou escolha o arquivo):</label>
+                    <input type="text" id="pFoto" placeholder="https://exemplo.com/foto.jpg"/>
+                    <input type="file" id="pFotoFile" accept="image/*" style="margin-top:5px;" onchange="uploadPlayerPhoto(this)"/>
+                </div>
+                <div class="form-group">
+                    <label>Nome Completo:</label>
+                    <input type="text" id="pNome" placeholder="Digite o nome completo" required="required"/>
+                </div>
+                <div class="form-group">
+                    <label>Apelido (usado no login):</label>
+                    <input type="text" id="pApelido" placeholder="Digite o apelido" required="required"/>
+                </div>
+                <div class="form-group">
+                    <label id="pSenhaLabel">Senha de acesso:</label>
+                    <input type="password" id="pSenha" placeholder="Mínimo 4 caracteres" autocomplete="new-password"/>
+                </div>
+                <div class="form-group">
+                    <label>Data de Nascimento (Dia / Mês / Ano):</label>
+                    <div class="date-inputs-group">
+                        <input type="number" id="pDiaNasc" placeholder="Dia" min="1" max="31" required="required"/>
+                        <input type="number" id="pMesNasc" placeholder="Mês" min="1" max="12" required="required"/>
+                        <input type="number" id="pAnoNasc" placeholder="Ano" min="1930" max="2030" required="required"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Posição:</label>
+                    <select id="pPosicao">
+                        <option value="Linha">Jogador de Linha</option>
+                        <option value="Goleiro">Goleiro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nível Técnico:</label>
+                    <select id="pEstrelas">
+                        <option value="1">⭐ 1 Estrela</option>
+                        <option value="2">⭐⭐ 2 Estrelas</option>
+                        <option value="3" selected="selected">⭐⭐⭐ 3 Estrelas</option>
+                        <option value="4">⭐⭐⭐⭐ 4 Estrelas</option>
+                        <option value="5">⭐⭐⭐⭐⭐ 5 Estrelas</option>
+                    </select>
+                </div>
+                <div class="grid-2">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('playerModal')">Cancelar</button>
+                    <button type="submit" class="btn">Salvar Cadastro</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- SOCIAL -->
-<div id="tab-social" class="tab-content">
-  <div class="card">
-    <div class="card-title"><span><i class="fa-solid fa-camera"></i> PUBLICAÇÃO SOCIAL DO TIME</span></div>
-    <div class="btn btn-gold upload-btn"><i class="fa-solid fa-upload"></i> UPLOAD DA FOTO
-      <input type="file" id="socialPhotoInput" accept="image/*" onchange="previewSocialPhoto(this)"/></div>
-    <div class="preview-box" id="socialPreviewBox">
-      <img id="socialPreviewImg" src="#" alt="Pré-visualização"/>
-      <button class="btn btn-gold" onclick="submitPhotoToGallery()"><i class="fa-solid fa-upload"></i> ENVIAR PARA A GALERIA DO APP</button>
+    <!-- MODAL AVISO -->
+    <div class="modal" id="noticeModal">
+        <div class="modal-content">
+            <h3 style="margin-bottom: 15px;">Editar Aviso Oficial</h3>
+            <div class="form-group"><textarea id="noticeInput" rows="5"></textarea></div>
+            <div class="grid-2">
+                <button class="btn btn-outline" onclick="closeModal('noticeModal')">Cancelar</button>
+                <button class="btn" onclick="saveNotice()">Publicar</button>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="card"><div class="card-title"><span><i class="fa-solid fa-images"></i> GALERIA DE FOTOS DO APP</span></div><div class="gallery-grid" id="socialGallery"></div></div>
-</div>
 
-<!-- PERFIL / ASSIDUIDADE -->
-<div id="tab-assiduidade" class="tab-content">
-  <div class="card">
-    <div class="card-title"><span><i class="fa-solid fa-id-card"></i> CADASTRO / PERFIL DO JOGADOR</span></div>
-    <div class="form-group admin-only"><label>Integrante (escolha quem editar):</label><select id="meSelect" onchange="selectMe(this.value)"></select></div>
-    <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:10px" id="meInfo"></p>
-    <button class="btn btn-gold" onclick="openPlayerModal()"><i class="fa-solid fa-user-pen"></i> PREENCHER/EDITAR CADASTRO</button>
-  </div>
-  <div class="card"><div class="card-title"><span><i class="fa-solid fa-chart-line"></i> ASSIDUIDADE E DESEMPENHO</span></div><div id="assiduidadeList"></div></div>
-</div>
+    <script>
+        let db;
+        let currentRole = null;      // 'ADMIN' | 'JOGADOR' | null
+        let currentPlayerId = null;  // id do jogador logado
+        let loginMode = 'JOGADOR';
+        let selectedSocialImageBase64 = null;
+        let clockStarted = false;
 
-<!-- RACHA -->
-<div id="tab-racha" class="tab-content">
-  <div class="card admin-only">
-    <div class="card-title"><span><i class="fa-solid fa-dice"></i> SORTEIO: 25 LINHA + 5 GOLEIROS</span></div>
-    <small style="color:var(--text-muted);display:block;margin-bottom:10px">Cada grupo de estrelas tem 5 jogadores. Sai 1 de cada grupo para cada um dos 5 times, mais 1 goleiro por time.</small>
-    <div class="grid-2">
-      <button class="btn btn-outline" style="margin-top:0" onclick="fillFromConfirmed()"><i class="fa-solid fa-list-check"></i> Preencher com confirmados</button>
-      <button class="btn btn-outline" style="margin-top:0" onclick="clearSorteio()"><i class="fa-solid fa-eraser"></i> Limpar</button>
-    </div>
-    <div id="sorteioForm" style="margin-top:14px"></div>
-    <button class="btn btn-gold" onclick="drawTeams()"><i class="fa-solid fa-shuffle"></i> SORTEAR TIMES</button>
-  </div>
-  <div id="teamsContainer"><p style="text-align:center;color:var(--text-muted);margin:20px 0">Nenhum sorteio ativo.</p></div>
+        const DEFAULT_ADMIN_USER = "admin";
+        const DEFAULT_ADMIN_PASS = "admin123";
+        const SESSION_KEY = "aps_futsal_session";
+        let memSession = null;
+        function sessGet() { try { return localStorage.getItem(SESSION_KEY); } catch (e) { return memSession; } }
+        function sessSet(v) { memSession = v; try { localStorage.setItem(SESSION_KEY, v); } catch (e) {} }
+        function sessDel() { memSession = null; try { localStorage.removeItem(SESSION_KEY); } catch (e) {} }
 
-  <!-- CAMPEONATO -->
-  <div class="card" id="campCard">
-    <div class="card-title"><span><i class="fa-solid fa-trophy" style="color:var(--accent-gold)"></i> CAMPEONATO</span><span class="status-pill pill-yellow" id="campProgress">0/0 jogos</span></div>
-    <div class="grid-2 admin-only">
-      <div class="form-group"><label>Quantidade de times:</label><select id="campN"><option value="4">4 times</option><option value="5">5 times</option></select></div>
-      <div class="form-group"><label>&nbsp;</label><button class="btn btn-outline" style="margin-top:0" id="campReset"><i class="fa-solid fa-rotate-left"></i> Limpar tudo</button></div>
-    </div>
-    <small style="color:var(--text-muted)">Nomes dos times (editável):</small>
-    <div class="camp-names" id="campNames" style="margin-top:6px"></div>
-    <div class="card-title" style="margin-top:6px"><span>RODADAS (todos contra todos, só ida)</span></div>
-    <div id="campRounds"></div>
-    <div class="card-title" style="margin-top:14px"><span>TABELA DE CLASSIFICAÇÃO</span></div>
-    <div class="camp-table-wrap"><table class="camp-table" id="campTable"></table></div>
-    <small style="color:var(--text-muted);font-size:.68rem;display:block;margin-top:6px">Critérios: pontos, saldo de gols, gols pró, vitórias. V = 3 pts, E = 1 pt.</small>
-    <div class="card-title" style="margin-top:16px"><span>PARTIDAS EXTRAS (desempate/final)</span>
-      <button class="btn btn-outline btn-sm" id="campAddExtra"><i class="fa-solid fa-plus"></i> Partida</button></div>
-    <div id="campExtras"></div>
-    <small style="color:var(--text-muted);font-size:.68rem">As extras não entram na tabela.</small>
-    <div class="camp-award" style="border-color:rgba(255,215,0,.4)">
-      <h4><i class="fa-solid fa-crown" style="color:var(--accent-gold)"></i> CAMPEÃO</h4>
-      <input class="camp-in" id="campChamp" placeholder="Nome do campeão"/>
-      <button class="btn btn-gold btn-sm" style="margin-top:8px" id="campSugChamp">Sugerir pelo líder da tabela</button>
-      <div class="show" id="campChampShow"></div>
-    </div>
-    <div class="camp-award" style="border-color:rgba(255,82,82,.4)">
-      <h4><i class="fa-solid fa-user-slash" style="color:var(--danger)"></i> CALÇA ENFORCADA</h4>
-      <input class="camp-in" id="campCalca" placeholder="Nome do calça enforcada"/>
-      <button class="btn btn-danger btn-sm" style="margin-top:8px" id="campSugCalca">Sugerir pelo último da tabela</button>
-      <div class="show" id="campCalcaShow"></div>
-    </div>
-    <div class="camp-award" style="border-color:rgba(0,230,118,.4)">
-      <h4><i class="fa-solid fa-floppy-disk" style="color:var(--primary-green)"></i> SALVAR CAMPEONATO</h4>
-      <small style="color:var(--text-muted);display:block;margin-bottom:8px">Data do racha (dia / mês / ano):</small>
-      <div class="date-inputs-group">
-        <input class="camp-in" type="text" id="campDia" inputmode="numeric" maxlength="2" placeholder="Dia" oninput="this.value=this.value.replace(/\D/g,'')"/>
-        <input class="camp-in" type="text" id="campMes" inputmode="numeric" maxlength="2" placeholder="Mês" oninput="this.value=this.value.replace(/\D/g,'')"/>
-        <input class="camp-in" type="text" id="campAno" inputmode="numeric" maxlength="4" placeholder="Ano" oninput="this.value=this.value.replace(/\D/g,'')"/>
-      </div>
-      <button class="btn" id="campSave"><i class="fa-solid fa-floppy-disk"></i> SALVAR CAMPEONATO</button>
-      <small style="color:var(--text-muted);font-size:.68rem;display:block;margin-top:6px">O campeão e a data aparecem na página inicial.</small>
-    </div>
-  </div>
-</div>
+        const monthNames = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
 
-<!-- FINANCEIRO -->
-<div id="tab-mensalidades" class="tab-content">
-  <div class="card admin-only">
-    <div class="card-title"><span><i class="fa-solid fa-wallet"></i> CAIXA DO MÊS (ADMINISTRADOR)</span></div>
-    <div class="grid-3">
-      <div class="stat-box"><div class="val" style="color:var(--primary-green)" id="finArrecadado">R$ 0</div><div class="lbl">Adimplente</div></div>
-      <div class="stat-box"><div class="val" style="color:var(--warning)" id="finPendente">R$ 0</div><div class="lbl">Inadimplente</div></div>
-      <div class="stat-box"><div class="val" style="color:var(--danger)" id="finAtrasado">R$ 0</div><div class="lbl">Atrasado</div></div>
-    </div>
-  </div>
-  <div class="card"><div class="card-title"><span>SITUAÇÃO FINANCEIRA</span></div><div id="financialList"></div>
-    <small class="admin-only" style="color:var(--text-muted)">Admin: toque no status para alterar.</small></div>
-</div>
+        function initDB() {
+            let request;
+            try {
+                request = indexedDB.open("APSFutsalNovoMaracanauDB", 6);
+            } catch (err) {
+                showStorageError("Este ambiente bloqueia o armazenamento do navegador (" + err.message + "). Abra o arquivo direto no Chrome/Safari, fora de visualizadores ou pré-visualizações.");
+                return;
+            }
+            request.onupgradeneeded = (e) => {
+                db = e.target.result;
+                if (!db.objectStoreNames.contains("players")) db.createObjectStore("players", { keyPath: "id", autoIncrement: true });
+                if (!db.objectStoreNames.contains("settings")) db.createObjectStore("settings", { keyPath: "key" });
+                if (!db.objectStoreNames.contains("list")) db.createObjectStore("list", { keyPath: "playerId" });
+                if (!db.objectStoreNames.contains("teams")) db.createObjectStore("teams", { keyPath: "id" });
+                if (!db.objectStoreNames.contains("history")) db.createObjectStore("history", { keyPath: "id", autoIncrement: true });
+                if (!db.objectStoreNames.contains("chat")) db.createObjectStore("chat", { keyPath: "id", autoIncrement: true });
+                if (!db.objectStoreNames.contains("gallery")) db.createObjectStore("gallery", { keyPath: "id", autoIncrement: true });
+            };
+            request.onsuccess = (e) => {
+                db = e.target.result;
+                db.onversionchange = () => { db.close(); location.reload(); };
+                loadInitialData().catch(err => {
+                    showLogin();
+                    document.getElementById("loginError").innerText = "Erro ao iniciar: " + err.message;
+                });
+            };
+            request.onblocked = () => alert("Feche as outras abas/janelas do app e recarregue a página.");
+            request.onerror = () => {
+                showStorageError("Não foi possível abrir o banco de dados do navegador. Abra o arquivo direto no Chrome/Safari (não em modo anônimo nem dentro de outro app).");
+            };
+        }
 
-<!-- ADMIN -->
-<div id="tab-admin" class="tab-content">
-  <div class="card admin-only">
-    <div class="card-title"><span><i class="fa-solid fa-user-plus"></i> GERENCIAR INTEGRANTES</span></div>
-    <button class="btn" onclick="addPlayer()"><i class="fa-solid fa-plus"></i> ADICIONAR INTEGRANTE</button>
-    <button class="btn btn-gold" onclick="editRacha()"><i class="fa-regular fa-calendar"></i> EDITAR DIA/HORA/LOCAL DO RACHA</button>
-    <button class="btn btn-outline" onclick="closeRacha()"><i class="fa-solid fa-flag-checkered"></i> ENCERRAR RACHA (computar presenças)</button>
-    <div id="adminList" style="margin-top:12px"></div>
-  </div>
-</div>
+        function showStorageError(msg) {
+            showLogin();
+            document.getElementById("loginError").innerText = msg;
+        }
 
-</div>
+        function startLiveClock() {
+            if (clockStarted) return;
+            clockStarted = true;
+            const tick = () => {
+                const now = new Date();
+                const h = String(now.getHours()).padStart(2, '0');
+                const m = String(now.getMinutes()).padStart(2, '0');
+                const s = String(now.getSeconds()).padStart(2, '0');
+                document.getElementById("liveClock").innerText = `${h}:${m}:${s}`;
+            };
+            tick();
+            setInterval(tick, 1000);
+        }
 
-<div class="nav-bar" id="navBar">
-  <div class="nav-item active" data-t="inicio"><i class="fa-solid fa-house"></i>Início</div>
-  <div class="nav-item" data-t="lista"><i class="fa-solid fa-list"></i>Lista</div>
-  <div class="nav-item" data-t="chat"><i class="fa-solid fa-comments"></i>Chat</div>
-  <div class="nav-item" data-t="social"><i class="fa-solid fa-camera"></i>Social</div>
-  <div class="nav-item" data-t="assiduidade"><i class="fa-solid fa-id-card"></i>Perfil</div>
-  <div class="nav-item" data-t="racha"><i class="fa-solid fa-futbol"></i>Racha</div>
-  <div class="nav-item" data-t="mensalidades"><i class="fa-solid fa-wallet"></i>Caixa</div>
-  <div class="nav-item admin-only" data-t="admin"><i class="fa-solid fa-gear"></i>Admin</div>
-</div>
+        async function loadInitialData() {
+            startLiveClock();
+            await ensureAdminPassword();
+            await restoreSession();
+        }
 
-<!-- MODAL CADASTRO DO INTEGRANTE -->
-<div class="modal" id="playerModal">
-  <div class="modal-content">
-    <div class="card-title"><span><i class="fa-solid fa-id-card"></i> CADASTRO DO INTEGRANTE</span>
-      <button class="btn btn-outline btn-sm" style="margin:0" onclick="closePlayerModal()">✕</button></div>
-    <div style="text-align:center;margin-bottom:14px">
-      <div class="pf-avatar" id="pfAvatar"></div>
-      <div class="btn btn-gold upload-btn" style="margin-top:12px"><i class="fa-solid fa-upload"></i> UPLOAD DA FOTO
-        <input type="file" id="pfFile" accept="image/*" onchange="pickAvatar(this)"/></div>
-    </div>
-    <div class="form-group"><label>Nome completo:</label><input type="text" id="pfNome" maxlength="60" placeholder="Seu nome"/></div>
-    <div class="form-group"><label>Apelido:</label><input type="text" id="pfApelido" maxlength="20" placeholder="Como é chamado no racha"/></div>
-    <div class="form-group"><label>Data de nascimento (dia / mês / ano):</label>
-      <div class="date-inputs-group">
-        <input type="text" id="pfDia" inputmode="numeric" maxlength="2" placeholder="Dia" oninput="this.value=this.value.replace(/\D/g,'')"/>
-        <input type="text" id="pfMes" inputmode="numeric" maxlength="2" placeholder="Mês" oninput="this.value=this.value.replace(/\D/g,'')"/>
-        <input type="text" id="pfAno" inputmode="numeric" maxlength="4" placeholder="Ano" oninput="this.value=this.value.replace(/\D/g,'')"/>
-      </div></div>
-    <div class="form-group"><label>Posição:</label><select id="pfPos"><option value="linha">Linha</option><option value="goleiro">Goleiro</option></select></div>
-    <div class="grid-2 admin-only">
-      <div class="form-group"><label>Nível (estrelas):</label><select id="pfStars"><option value="1">★ (1)</option><option value="2">★★ (2)</option><option value="3">★★★ (3)</option><option value="4">★★★★ (4)</option><option value="5">★★★★★ (5)</option></select></div>
-      <div class="form-group"><label>Mensalidade (R$):</label><input type="number" id="pfValor" min="0" value="30"/></div>
-    </div>
-    <button class="btn btn-gold" onclick="savePlayer()"><i class="fa-solid fa-floppy-disk"></i> SALVAR CADASTRO</button>
-  </div>
-</div>
+        /* ===================== LOGIN ===================== */
+        async function hashText(text) {
+            text = String(text).trim();
+            try {
+                if (window.crypto && crypto.subtle) {
+                    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("aps|" + text));
+                    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+                }
+            } catch (e) {}
+            return "b64:" + btoa(unescape(encodeURIComponent("aps|" + text)));
+        }
 
-<script>
-/* ========= UTIL / ESTADO ========= */
-var $=function(id){return document.getElementById(id)};
-function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-var KEY='aps_futsal_v1',DB;
-var DEF={notice:'Bem-vindos ao APS Futsal Novo Maracanaú!\nConfirme sua presença até o fechamento da lista.',when:'Domingo - 08:00',where:'Novo Maracanaú',open:'',close:'',min:10,players:[],conf:{},chat:[],photos:[],me:null,admin:true};
-function load(){try{DB=JSON.parse(localStorage.getItem(KEY))}catch(e){DB=null}if(!DB)DB=JSON.parse(JSON.stringify(DEF))}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){alert('Sem espaço para salvar (talvez fotos demais).')}}
-function pById(id){return DB.players.filter(function(p){return p.id===id})[0]}
-function me(){return DB.me?pById(DB.me):null}
+        function putSetting(key, value) {
+            return new Promise((resolve) => {
+                const tx = db.transaction("settings", "readwrite");
+                tx.objectStore("settings").put({ key, value });
+                tx.oncomplete = () => resolve();
+            });
+        }
 
-/* ========= RELÓGIO EM TEMPO REAL ========= */
-function tick(){$('liveClock').textContent=new Date().toLocaleTimeString('pt-BR',{hour12:false})}
-tick();setInterval(tick,1000);
+        async function ensureAdminPassword() {
+            const settings = await getSettings();
+            if (!settings.adminHash) {
+                await putSetting("adminHash", await hashText(DEFAULT_ADMIN_PASS));
+            }
+        }
 
-/* ========= NAVEGAÇÃO / PERFIL ========= */
-function showTab(t){
-  document.querySelectorAll('.tab-content').forEach(function(e){e.classList.toggle('active',e.id==='tab-'+t)});
-  document.querySelectorAll('.nav-item').forEach(function(e){e.classList.toggle('active',e.dataset.t===t)});
-  window.scrollTo(0,0);
-}
-$('navBar').addEventListener('click',function(e){var n=e.target.closest('.nav-item');if(n)showTab(n.dataset.t)});
-function toggleRole(){DB.admin=!DB.admin;save();applyRole()}
-function applyRole(){document.body.classList.toggle('player',!DB.admin);$('userRoleBadge').textContent='Perfil: '+(DB.admin?'ADMIN':'JOGADOR');if(!DB.admin&&$('tab-admin').classList.contains('active'))showTab('inicio')}
+        function setLoginMode(mode) {
+            loginMode = mode;
+            document.getElementById("tabLoginJogador").classList.toggle("active", mode === 'JOGADOR');
+            document.getElementById("tabLoginAdmin").classList.toggle("active", mode === 'ADMIN');
+            document.getElementById("loginUserLabel").innerText = mode === 'ADMIN' ? "Usuário:" : "Apelido:";
+            document.getElementById("loginUser").placeholder = mode === 'ADMIN' ? "Usuário do administrador" : "Seu apelido";
+            document.getElementById("btnNovoCadastro").style.display = mode === 'ADMIN' ? "none" : "flex";
+            document.getElementById("loginError").innerText = "";
+            document.getElementById("loginUser").value = "";
+            document.getElementById("loginPass").value = "";
+        }
 
-/* ========= INÍCIO ========= */
-function editNotice(){var v=prompt('Novo aviso:',DB.notice);if(v!==null){DB.notice=v;save();renderInicio()}}
-function editRacha(){var w=prompt('Dia/Hora do racha:',DB.when);if(w===null)return;var l=prompt('Local:',DB.where);DB.when=w;if(l!==null)DB.where=l;save();renderInicio()}
-function listStatus(){
-  var n=Date.now(),o=DB.open?new Date(DB.open).getTime():0,c=DB.close?new Date(DB.close).getTime():Infinity;
-  if(n<o)return{ok:false,txt:'Lista abre em '+new Date(DB.open).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'}),cls:'pill-yellow'};
-  if(n>c)return{ok:false,txt:'Lista encerrada',cls:'pill-red'};
-  return{ok:true,txt:'Lista ABERTA'+(DB.close?' até '+new Date(DB.close).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'}):''),cls:'pill-green'};
-}
-function groups(){
-  var ids=Object.keys(DB.conf).filter(function(i){return DB.conf[i].v}).sort(function(a,b){return DB.conf[a].t-DB.conf[b].t});
-  var L=[],G=[],R=[];
-  ids.forEach(function(id){var p=pById(id);if(!p)return;
-    if(p.pos==='goleiro'){G.length<5?G.push(p):R.push(p)}else{L.length<25?L.push(p):R.push(p)}});
-  return{L:L,G:G,R:R};
-}
-function renderInicio(){
-  $('noticeText').textContent=DB.notice;$('infoDateTime').textContent=DB.when;$('infoLocation').textContent=DB.where;
-  var s=listStatus(),w=$('listWindowStatus');w.textContent=s.txt;w.className='status-pill '+s.cls;
-  var g=groups(),q=$('minQuotaBadge'),ok=g.L.length>=DB.min;
-  q.textContent=(ok?'Quórum atingido: ':'Faltam '+(DB.min-g.L.length)+' de linha (mín. '+DB.min+'): ')+g.L.length+' de linha, '+g.G.length+' goleiro(s)';
-  q.className='status-pill '+(ok?'pill-green':'pill-yellow');
-}
-function confirmPresence(v){
-  var s=listStatus();if(!s.ok&&!DB.admin){alert(s.txt);return}
-  if(!me()){openPlayerModal();if(!me())return}
-  DB.conf[DB.me]={v:v,t:Date.now()};save();renderAll();
-  alert(v?'Presença confirmada!':'Ausência registrada.');
-}
+        document.getElementById("loginForm").onsubmit = async (e) => {
+            e.preventDefault();
+            const errEl = document.getElementById("loginError");
+            errEl.innerText = "";
+            try {
+            const user = document.getElementById("loginUser").value.trim();
+            const pass = document.getElementById("loginPass").value;
+            const passHash = await hashText(pass);
 
-function renderHist(){
-  var h=DB.hist||[];
-  $('histList').innerHTML=h.map(function(x,i){
-    return'<div class="player-item"><span>🏆 <b style="color:var(--accent-gold)">'+esc(x.champ)+'</b><br/><small style="color:var(--text-muted)">Racha de '+fmtNasc(x.data)+'</small></span><button class="btn btn-danger btn-sm admin-only" style="margin:0" onclick="delHist('+i+')"><i class="fa-solid fa-trash"></i></button></div>';
-  }).join('')||'<small style="color:var(--text-muted)">Nenhum campeonato salvo ainda.</small>';
-}
-function delHist(i){if(!DB.admin||!confirm('Remover este campeonato salvo?'))return;DB.hist.splice(i,1);save();renderHist()}
+            if (loginMode === 'ADMIN') {
+                const settings = await getSettings();
+                if (!settings.adminHash) {
+                    await ensureAdminPassword();
+                    settings.adminHash = (await getSettings()).adminHash;
+                }
+                if (user.toLowerCase() === DEFAULT_ADMIN_USER && passHash === settings.adminHash) {
+                    startSession({ role: 'ADMIN', playerId: null });
+                } else {
+                    errEl.innerText = "Usuário ou senha do administrador incorretos.";
+                }
+            } else {
+                const players = await getAllFromStore("players");
+                const p = players.find(x => (x.apelido || "").trim().toLowerCase() === user.toLowerCase());
+                if (!p) {
+                    errEl.innerText = "Jogador não encontrado. Faça seu cadastro.";
+                } else if (!p.senhaHash) {
+                    errEl.innerText = "Seu cadastro ainda não tem senha. Peça ao administrador para definir.";
+                } else if (p.senhaHash !== passHash) {
+                    errEl.innerText = "Senha incorreta.";
+                } else {
+                    startSession({ role: 'JOGADOR', playerId: p.id });
+                }
+            }
+            } catch (err) {
+                errEl.innerText = "Erro: " + err.message;
+            }
+        };
 
-/* ========= LISTA ========= */
-function saveListSchedule(){DB.open=$('cfgListOpen').value;DB.close=$('cfgListClose').value;save();renderAll();alert('Agendamento salvo.')}
-function renderLista(){
-  $('cfgListOpen').value=DB.open;$('cfgListClose').value=DB.close;
-  var g=groups();
-  function row(p,i){return'<div class="player-item"><span>'+(i+1)+'. '+esc(p.name)+'</span></div>'}
-  $('cntLinha').textContent=g.L.length;$('cntGoleiro').textContent=g.G.length;
-  $('listLinha').innerHTML=g.L.map(row).join('')||'<small style="color:var(--text-muted)">Ninguém confirmado.</small>';
-  $('listGoleiro').innerHTML=g.G.map(row).join('')||'<small style="color:var(--text-muted)">Nenhum goleiro.</small>';
-  $('listReserva').innerHTML=g.R.map(function(p,i){return'<div class="player-item"><span>'+(i+1)+'. '+esc(p.name)+' <small style="color:var(--text-muted)">('+p.pos+')</small></span></div>'}).join('')||'<small style="color:var(--text-muted)">Fila vazia.</small>';
-}
+        function startSession(sess) {
+            sessSet(JSON.stringify(sess));
+            applySession(sess);
+        }
 
-/* ========= CHAT ========= */
-function sendChatMessage(){
-  var i=$('chatInput'),t=i.value.trim();if(!t)return;
-  var m=me();if(!m){alert('Escolha seu nome no topo do chat antes de enviar.');return}DB.chat.push({n:m.apelido||m.name,id:DB.me,t:t,h:new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})});
-  if(DB.chat.length>100)DB.chat.shift();i.value='';save();renderChat();
-}
-$('chatInput').addEventListener('keydown',function(e){if(e.key==='Enter')sendChatMessage()});
-function selectChatMe(v){
-  if(v==='new'){openPlayerModal();renderChat();return}
-  DB.me=v||null;save();renderAll();
-}
-function chatName(m){var p=m.id&&pById(m.id);return p?(p.apelido||p.name):m.n}
-function renderChat(){
-  var cm=me();
-  $('chatMe').innerHTML=(cm?'':'<option value="">Selecione seu nome...</option>')+DB.players.map(function(p){return'<option value="'+p.id+'">'+esc(p.name)+(p.apelido?' ('+esc(p.apelido)+')':'')+'</option>'}).join('')+'<option value="new">+ Fazer meu cadastro</option>';
-  $('chatMe').value=cm?cm.id:'';
-  var b=$('chatBox');
-  b.innerHTML=DB.chat.map(function(m){return'<div class="chat-msg'+(m.id&&m.id===DB.me?' self':'')+'"><div class="chat-msg-header"><b>'+esc(chatName(m))+'</b> · '+m.h+'</div>'+esc(m.t)+'</div>'}).join('');
-  b.scrollTop=b.scrollHeight;
-}
+        async function restoreSession() {
+            let sess = null;
+            try { sess = JSON.parse(sessGet() || "null"); } catch (e) {}
+            if (sess && sess.role === 'JOGADOR') {
+                const players = await getAllFromStore("players");
+                if (!players.find(p => p.id === sess.playerId)) sess = null;
+            }
+            if (sess && (sess.role === 'ADMIN' || sess.role === 'JOGADOR')) {
+                applySession(sess);
+            } else {
+                showLogin();
+            }
+        }
 
-/* ========= ONLINE ========= */
-function renderOnline(){
-  var lim=Date.now()-60000;
-  var on=DB.players.filter(function(p){return p.seen&&p.seen>lim});
-  $('onlineBar').innerHTML='<b>Online agora ('+on.length+'):</b> '+(on.map(function(p){return'<span class="online-chip">'+esc(p.apelido||p.name.split(' ')[0])+'</span>'}).join('')||'ninguém');
-}
-function beat(){var m=me();if(m){m.seen=Date.now();save()}renderOnline()}
+        async function applySession(sess) {
+            currentRole = sess.role;
+            currentPlayerId = sess.playerId;
+            let label = "ADMIN";
+            if (currentRole === 'JOGADOR') {
+                const players = await getAllFromStore("players");
+                const p = players.find(x => x.id === currentPlayerId);
+                label = p ? p.apelido : "JOGADOR";
+            }
+            document.getElementById("userRoleBadge").innerHTML = `<i class="fa-solid fa-right-from-bracket"></i> ${escapeHtml(label)} · Sair`;
+            document.getElementById("loginScreen").style.display = "none";
+            document.body.classList.remove("logged-out");
+            document.getElementById("loginPass").value = "";
+            updateRoleUI();
+            switchTab('inicio', document.querySelector(".nav-item"));
+            await refreshAllData();
+        }
 
-/* ========= SOCIAL ========= */
-var pendingPhoto=null;
-function previewSocialPhoto(inp){
-  var f=inp.files&&inp.files[0];if(!f)return;
-  var r=new FileReader();
-  r.onload=function(){var im=new Image();im.onload=function(){
-    var w=Math.min(480,im.width),h=im.height*(w/im.width),c=document.createElement('canvas');
-    c.width=w;c.height=h;c.getContext('2d').drawImage(im,0,0,w,h);
-    pendingPhoto=c.toDataURL('image/jpeg',.7);$('socialPreviewImg').src=pendingPhoto;$('socialPreviewBox').style.display='block'};
-    im.onerror=function(){alert('Não consegui ler essa imagem. Tente uma foto JPG ou PNG.')};
-    im.src=r.result};
-  r.readAsDataURL(f);
-}
-function submitPhotoToGallery(){
-  if(!pendingPhoto)return;DB.photos.unshift(pendingPhoto);pendingPhoto=null;
-  $('socialPreviewBox').style.display='none';$('socialPhotoInput').value='';save();renderSocial();
-}
-function renderSocial(){$('socialGallery').innerHTML=DB.photos.map(function(s){return'<div class="gallery-item"><img src="'+s+'" alt="Foto"/></div>'}).join('')}
+        function showLogin() {
+            currentRole = null;
+            currentPlayerId = null;
+            document.body.classList.add("logged-out");
+            document.getElementById("loginScreen").style.display = "flex";
+            setLoginMode('JOGADOR');
+        }
 
-/* ========= PERFIL / ASSIDUIDADE ========= */
-var pendingAvatar=null;
-function avatarHtml(p){return'<span class="mini-av-box">'+(p.foto?'<img class="mini-av" src="'+p.foto+'" alt=""/>':'<i class="fa-solid fa-user"></i>')+'</span>'}
-function fmtNasc(d){if(!d)return'';var a=d.split('-');return a[2]+'/'+a[1]+'/'+a[0]}
-function showAvatar(){$('pfAvatar').innerHTML=pendingAvatar?'<img src="'+pendingAvatar+'" alt="Foto"/>':'<i class="fa-solid fa-user"></i>'}
-var editingId=null;
-function stars(n){n=n||3;return '★'.repeat(n)+'☆'.repeat(5-n)}
-function openPlayerModal(id){
-  editingId=id||null;
-  var m=(id==='new'?{}:(id?pById(id):me()))||{};pendingAvatar=m.foto||null;
-  $('pfNome').value=m.name||'';$('pfApelido').value=m.apelido||'';var nd=(m.nasc||'').split('-');$('pfAno').value=nd[0]||'';$('pfMes').value=nd[1]?String(+nd[1]):'';$('pfDia').value=nd[2]?String(+nd[2]):'';$('pfPos').value=m.pos||'linha';
-  $('pfStars').value=m.estrelas||3;$('pfValor').value=m.valor==null?30:m.valor;
-  $('pfFile').value='';showAvatar();$('playerModal').style.display='flex';
-}
-function readNasc(){
-  var d=$('pfDia').value.trim(),mo=$('pfMes').value.trim(),a=$('pfAno').value.trim();
-  if(!d&&!mo&&!a)return'';
-  d=+d;mo=+mo;a=+a;
-  var dt=new Date(a,mo-1,d);
-  if(!d||!mo||a<1900||a>new Date().getFullYear()||dt.getFullYear()!==a||dt.getMonth()!==mo-1||dt.getDate()!==d)return null;
-  return a+'-'+('0'+mo).slice(-2)+'-'+('0'+d).slice(-2);
-}
-function closePlayerModal(){$('playerModal').style.display='none'}
-function pickAvatar(inp){
-  var f=inp.files&&inp.files[0];if(!f)return;
-  var r=new FileReader();
-  r.onload=function(){var im=new Image();im.onload=function(){
-    var s=Math.min(im.width,im.height),c=document.createElement('canvas');c.width=c.height=240;
-    c.getContext('2d').drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,240,240);
-    pendingAvatar=c.toDataURL('image/jpeg',.8);showAvatar()};
-    im.onerror=function(){alert('Não consegui ler essa imagem. Tente uma foto JPG ou PNG.')};
-    im.src=r.result};
-  r.readAsDataURL(f);
-}
-function savePlayer(){
-  var nome=$('pfNome').value.trim();if(!nome){alert('Informe o nome.');return}
-  var nasc=readNasc();if(nasc===null){alert('Data de nascimento inválida. Use dia, mês e ano (ex.: 05 / 03 / 1995).');return}
-  var data={name:nome,apelido:$('pfApelido').value.trim(),nasc:nasc,pos:$('pfPos').value,foto:pendingAvatar||''};
-  var m;
-  function novo(){var p={id:'p'+Date.now(),fin:'pend',valor:30,pres:0,jogos:0,estrelas:3};DB.players.push(p);return p}
-  if(editingId==='new'){m=novo()}
-  else if(editingId){m=pById(editingId)}
-  else{
-    m=me();
-    if(!m){m=DB.players.filter(function(p){return p.name.toLowerCase()===nome.toLowerCase()})[0]||novo();DB.me=m.id}
-  }
-  if(!m)return;
-  for(var k in data)m[k]=data[k];
-  if(DB.admin){m.estrelas=+$('pfStars').value;var v=parseFloat($('pfValor').value);m.valor=isNaN(v)?30:v}
-  save();closePlayerModal();renderAll();
-}
-function selectMe(v){
-  if(v==='new'){openPlayerModal('new');renderAssid();return}
-  DB.me=v||null;save();renderAll();
-}
-function renderAssid(){
-  var m=me();
-  $('meSelect').innerHTML=(m?'':'<option value="">Selecione...</option>')+DB.players.map(function(p){return'<option value="'+p.id+'">'+esc(p.name)+(p.apelido?' ('+esc(p.apelido)+')':'')+'</option>'}).join('')+'<option value="new">+ Novo integrante</option>';
-  $('meSelect').value=m?m.id:'';
-  $('meInfo').innerHTML=m?'<div style="display:flex;align-items:center;gap:10px;color:var(--text-light)">'+avatarHtml(m)+'<div><b>'+esc(m.name)+'</b>'+(m.apelido?' <span style="color:var(--primary-green)">"'+esc(m.apelido)+'"</span>':'')+'<br/><small style="color:var(--text-muted)">'+m.pos+(m.nasc?' · nasc. '+fmtNasc(m.nasc):'')+'</small></div></div>':'Você ainda não fez seu cadastro.';
-  $('assiduidadeList').innerHTML=DB.players.map(function(p){
-    var pc=p.jogos?Math.round(p.pres/p.jogos*100):0;
-    return'<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;align-items:center;font-size:.85rem"><span style="display:flex;align-items:center;gap:8px">'+avatarHtml(p)+esc(p.name)+(p.apelido?' <small style="color:var(--text-muted)">('+esc(p.apelido)+')</small>':'')+'</span><span>'+p.pres+'/'+p.jogos+' ('+pc+'%)</span></div><div class="chart-bar-bg"><div class="chart-bar-fill" style="width:'+pc+'%"></div></div></div>';
-  }).join('')||'<small style="color:var(--text-muted)">Sem integrantes.</small>';
-}
+        function logout() {
+            if (!confirm("Deseja sair da sua conta?")) return;
+            sessDel();
+            showLogin();
+        }
 
-/* ========= SORTEIO ========= */
-function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
-function emptyArr(){return['','','','','']}
-function ensureSort(){if(!DB.sorteio||!DB.sorteio.groups)DB.sorteio={groups:[emptyArr(),emptyArr(),emptyArr(),emptyArr(),emptyArr()],gk:emptyArr(),result:null}}
-/* groups[0] = 5 estrelas ... groups[4] = 1 estrela */
-function renderSorteio(){
-  ensureSort();var S=DB.sorteio,h='',g,i;
-  for(g=0;g<5;g++){
-    var st=5-g;
-    h+='<div class="sg"><div class="sg-t">'+stars(st)+' — Grupo '+st+' estrela'+(st>1?'s':'')+'</div>';
-    for(i=0;i<5;i++)h+='<input data-sg="'+g+'-'+i+'" value="'+esc(S.groups[g][i])+'" placeholder="Jogador '+(i+1)+'" maxlength="30"/>';
-    h+='</div>';
-  }
-  h+='<div class="sg"><div class="sg-t">🧤 Goleiros</div>';
-  for(i=0;i<5;i++)h+='<input data-sg="gk-'+i+'" value="'+esc(S.gk[i])+'" placeholder="Goleiro '+(i+1)+'" maxlength="30"/>';
-  h+='</div>';
-  $('sorteioForm').innerHTML=h;
-  renderResult();
-}
-$('sorteioForm').addEventListener('input',function(e){
-  var d=e.target.dataset.sg;if(!d)return;ensureSort();var p=d.split('-');
-  if(p[0]==='gk')DB.sorteio.gk[+p[1]]=e.target.value;else DB.sorteio.groups[+p[0]][+p[1]]=e.target.value;
-  save();
-});
-function fillFromConfirmed(){
-  ensureSort();var S=DB.sorteio,gr=groups(),cnt=[0,0,0,0,0];
-  S.groups=[emptyArr(),emptyArr(),emptyArr(),emptyArr(),emptyArr()];S.gk=emptyArr();S.result=null;
-  gr.L.forEach(function(p){var gi=5-(p.estrelas||3);if(cnt[gi]<5)S.groups[gi][cnt[gi]++]=p.apelido||p.name});
-  gr.G.forEach(function(p,i){if(i<5)S.gk[i]=p.apelido||p.name});
-  save();renderSorteio();
-}
-function clearSorteio(){if(!confirm('Limpar nomes e resultado do sorteio?'))return;DB.sorteio=null;ensureSort();save();renderSorteio()}
-function drawTeams(){
-  ensureSort();var S=DB.sorteio;
-  function ok(s){return s&&s.trim()!==''}
-  if(!S.gk.every(ok)||!S.groups.every(function(a){return a.every(ok)})){alert('Preencha os 25 jogadores de linha (5 em cada grupo de estrelas) e os 5 goleiros.');return}
-  var T=[],i;for(i=0;i<5;i++)T.push({gk:'',p:[]});
-  shuffle(S.gk.map(function(s){return s.trim()})).forEach(function(n,i){T[i].gk=n});
-  S.groups.forEach(function(arr,g){shuffle(arr.map(function(s){return s.trim()})).forEach(function(n,i){T[i].p[g]=n})});
-  S.result=T;save();renderResult();
-}
-function renderResult(){
-  var R=DB.sorteio&&DB.sorteio.result;
-  if(!R){$('teamsContainer').innerHTML='<p style="text-align:center;color:var(--text-muted);margin:20px 0">Nenhum sorteio ativo.</p>';return}
-  $('teamsContainer').innerHTML=R.map(function(t,i){
-    return'<div class="card team-card"><h4>TIME '+(i+1)+'</h4><div>🧤 '+esc(t.gk)+'</div>'+t.p.map(function(n,g){return'<div>'+stars(5-g)+' '+esc(n)+'</div>'}).join('')+'</div>';
-  }).join('');
-}
+        async function changeAdminPassword() {
+            if (currentRole !== 'ADMIN') return;
+            const np = document.getElementById("newAdminPass").value;
+            if (np.length < 4) { alert("A senha deve ter pelo menos 4 caracteres."); return; }
+            await putSetting("adminHash", await hashText(np));
+            document.getElementById("newAdminPass").value = "";
+            alert("Senha do administrador alterada com sucesso!");
+        }
 
-/* ========= FINANCEIRO ========= */
-var FIN={ok:['Pago','pill-green'],pend:['Pendente','pill-yellow'],atr:['Atrasado','pill-red']};
-function cycleFin(id){if(!DB.admin)return;var p=pById(id),o=['pend','ok','atr'];p.fin=o[(o.indexOf(p.fin)+1)%3];save();renderFin()}
-function renderFin(){
-  var s={ok:0,pend:0,atr:0};
-  $('financialList').innerHTML=DB.players.map(function(p){
-    s[p.fin]+=p.valor;var f=FIN[p.fin];
-    return'<div class="player-item"><span>'+esc(p.name)+' <small style="color:var(--text-muted)">R$ '+p.valor+'</small></span><span class="status-pill '+f[1]+'" onclick="cycleFin(\''+p.id+'\')" style="cursor:pointer">'+f[0]+'</span></div>';
-  }).join('')||'<small style="color:var(--text-muted)">Sem integrantes.</small>';
-  $('finArrecadado').textContent='R$ '+s.ok;$('finPendente').textContent='R$ '+s.pend;$('finAtrasado').textContent='R$ '+s.atr;
-}
+        function escapeHtml(s) {
+            return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        }
 
-/* ========= ADMIN ========= */
-function addPlayer(){if(DB.admin)openPlayerModal('new')}
-function delPlayer(id){if(!confirm('Remover integrante?'))return;DB.players=DB.players.filter(function(p){return p.id!==id});delete DB.conf[id];if(DB.me===id)DB.me=null;save();renderAll()}
-function closeRacha(){
-  if(!confirm('Encerrar o racha? Isso soma presenças e zera a lista de confirmados.'))return;
-  DB.players.forEach(function(p){p.jogos++;if(DB.conf[p.id]&&DB.conf[p.id].v)p.pres++});DB.conf={};save();renderAll();
-}
-function renderAdmin(){
-  $('adminList').innerHTML=DB.players.map(function(p){
-    return'<div class="player-item"><span style="display:flex;align-items:center;gap:8px;min-width:0">'+avatarHtml(p)+'<span style="min-width:0">'+esc(p.name)+(p.apelido?' <small style="color:var(--primary-green)">"'+esc(p.apelido)+'"</small>':'')+'<br/><small style="color:var(--accent-gold)">'+stars(p.estrelas)+'</small> <small style="color:var(--text-muted)">'+p.pos+(p.nasc?' · '+fmtNasc(p.nasc):'')+'</small></span></span><span style="display:flex;gap:6px"><button class="btn btn-outline btn-sm" style="margin:0" onclick="openPlayerModal(\''+p.id+'\')"><i class="fa-solid fa-pen"></i></button><button class="btn btn-danger btn-sm" style="margin:0" onclick="delPlayer(\''+p.id+'\')"><i class="fa-solid fa-trash"></i></button></span></div>';
-  }).join('');
-}
+        /* ===================== APP ===================== */
+        async function refreshAllData() {
+            if (!currentRole) return;
+            const players = await getAllFromStore("players");
+            const list = await getAllFromStore("list");
+            const history = await getAllFromStore("history");
 
-function renderAll(){renderInicio();renderLista();renderChat();renderSocial();renderAssid();renderFin();renderAdmin();renderSorteio();renderOnline();renderHist()}
+            renderMatchList(players, list);
+            renderAdminPlayersList(players);
+            renderFinancialList(players);
+            renderAssiduidadeList(players, history);
+            renderGallery();
+        }
 
-/* ========= CAMPEONATO ========= */
-(function(){
-var KEYC='aps_campeonato_v1',S;
-function newState(n,names){var nm=[];for(var i=0;i<n;i++)nm.push((names&&names[i])||'');return{n:n,names:nm,scores:{},extras:[],champ:'',calca:''}}
-function loadC(){try{S=JSON.parse(localStorage.getItem(KEYC))}catch(e){S=null}if(!S||!S.names)S=newState(4)}
-function saveC(){try{localStorage.setItem(KEYC,JSON.stringify(S))}catch(e){}}
-function nm(i){return(S.names[i]||'').trim()||('Time '+(i+1))}
+        function switchTab(tabId, el) {
+            if (tabId === 'admin' && currentRole !== 'ADMIN') return;
+            document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+            document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
+            document.getElementById(`tab-${tabId}`).classList.add("active");
+            if (el) el.classList.add("active");
+        }
 
-/* Círculo: com 5 times 1 folga por rodada; quem folgou joga a 1ª partida da rodada seguinte */
-function fixtures(n){
-  var t=[],i,r;for(i=0;i<n;i++)t.push(i);if(n%2)t.push(-1);
-  var m=t.length,rounds=[];
-  for(r=0;r<m-1;r++){
-    var ms=[],rest=-1;
-    for(i=0;i<m/2;i++){var a=t[i],b=t[m-1-i];if(a===-1)rest=b;else if(b===-1)rest=a;else ms.push([a,b])}
-    rounds.push({rest:rest,ms:ms});t=[t[0],t[m-1]].concat(t.slice(1,m-1));
-  }
-  for(r=1;r<rounds.length;r++){
-    var p=rounds[r-1].rest;
-    if(p>=0){var l=rounds[r].ms,k=-1;for(i=0;i<l.length;i++)if(l[i][0]===p||l[i][1]===p){k=i;break}
-      if(k>0)l.unshift(l.splice(k,1)[0])}
-  }
-  return rounds;
-}
-function standings(){
-  var rows=[],i;for(i=0;i<S.n;i++)rows.push({t:i,p:0,j:0,v:0,e:0,d:0,gp:0,gc:0});
-  var played=0,total=0;
-  fixtures(S.n).forEach(function(R,r){R.ms.forEach(function(mt,k){
-    total++;var s=S.scores[r+'-'+k];
-    if(!s||s[0]===''||s[1]===''||s[0]==null||s[1]==null)return;
-    played++;var g1=parseInt(s[0],10),g2=parseInt(s[1],10),A=rows[mt[0]],B=rows[mt[1]];
-    A.j++;B.j++;A.gp+=g1;A.gc+=g2;B.gp+=g2;B.gc+=g1;
-    if(g1>g2){A.v++;A.p+=3;B.d++}else if(g2>g1){B.v++;B.p+=3;A.d++}else{A.e++;B.e++;A.p++;B.p++}
-  })});
-  rows.sort(function(x,y){return(y.p-x.p)||((y.gp-y.gc)-(x.gp-x.gc))||(y.gp-x.gp)||(y.v-x.v)||(x.t-y.t)});
-  return{rows:rows,played:played,total:total};
-}
-function refreshNames(){document.querySelectorAll('#campCard .cn').forEach(function(el){el.textContent=nm(+el.dataset.t)})}
-function renderTable(){
-  var st=standings(),h='<tr><th>#</th><th style="text-align:left">Time</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GP</th><th>GC</th><th>SG</th></tr>';
-  st.rows.forEach(function(x,i){
-    var c=i===0?'first':(i===st.rows.length-1?'last':'');
-    h+='<tr class="'+c+'"><td>'+(i+1)+'</td><td class="tn">'+esc(nm(x.t))+'</td><td class="pts">'+x.p+'</td><td>'+x.j+'</td><td>'+x.v+'</td><td>'+x.e+'</td><td>'+x.d+'</td><td>'+x.gp+'</td><td>'+x.gc+'</td><td>'+(x.gp-x.gc)+'</td></tr>';
-  });
-  $('campTable').innerHTML=h;var pr=$('campProgress');
-  pr.textContent=st.played+'/'+st.total+' jogos';pr.className='status-pill '+(st.played===st.total&&st.total>0?'pill-green':'pill-yellow');
-}
-function renderExtras(){
-  $('campExtras').innerHTML=S.extras.map(function(x,i){
-    return'<div class="camp-extra"><input data-ex="'+i+'" data-f="a" value="'+esc(x.a)+'" placeholder="Time A"/>'+
-    '<input class="sc" type="number" min="0" inputmode="numeric" data-ex="'+i+'" data-f="ha" value="'+esc(x.ha)+'"/><b style="text-align:center">x</b>'+
-    '<input class="sc" type="number" min="0" inputmode="numeric" data-ex="'+i+'" data-f="hb" value="'+esc(x.hb)+'"/>'+
-    '<input data-ex="'+i+'" data-f="b" value="'+esc(x.b)+'" placeholder="Time B"/>'+
-    '<button class="btn btn-danger btn-sm" style="margin:0;padding:6px" data-delex="'+i+'">&times;</button></div>';
-  }).join('')||'<p style="font-size:.75rem;color:var(--text-muted);margin-bottom:6px">Nenhuma partida extra.</p>';
-}
-function renderAwards(){
-  $('campChamp').value=S.champ;$('campCalca').value=S.calca;
-  $('campChampShow').textContent=S.champ?'🏆 '+S.champ:'';$('campCalcaShow').textContent=S.calca?'👖 '+S.calca:'';
-}
-function renderC(){
-  $('campN').value=S.n;
-  $('campNames').innerHTML=S.names.map(function(v,i){return'<input data-nm="'+i+'" value="'+esc(v)+'" placeholder="Time '+(i+1)+'" maxlength="20"/>'}).join('');
-  $('campRounds').innerHTML=fixtures(S.n).map(function(R,r){
-    var h='<div class="camp-round-title">RODADA '+(r+1)+(R.rest>=0?' — folga: <span class="cn" data-t="'+R.rest+'"></span>':'')+'</div>';
-    R.ms.forEach(function(mt,k){
-      var s=S.scores[r+'-'+k]||['',''];
-      h+='<div class="camp-match"><span class="cn r" data-t="'+mt[0]+'"></span>'+
-      '<input type="number" min="0" inputmode="numeric" data-sc="'+r+'-'+k+'-0" value="'+esc(s[0])+'"/><b>x</b>'+
-      '<input type="number" min="0" inputmode="numeric" data-sc="'+r+'-'+k+'-1" value="'+esc(s[1])+'"/>'+
-      '<span class="cn" data-t="'+mt[1]+'"></span></div>';
-    });
-    return h;
-  }).join('');
-  refreshNames();renderTable();renderExtras();renderAwards();
-}
-function todayFill(){var d=new Date();$('campDia').value=d.getDate();$('campMes').value=d.getMonth()+1;$('campAno').value=d.getFullYear()}
-function saveChamp(){
-  var st=standings(),champ=(S.champ||'').trim();
-  if(!champ){
-    if(st.total>0&&st.played===st.total)champ=nm(st.rows[0].t);
-    else{alert('Defina o campeão antes de salvar (use o campo Campeão ou "Sugerir pelo líder da tabela").');return}
-  }
-  var d=+$('campDia').value,mo=+$('campMes').value,a=+$('campAno').value,dt=new Date(a,mo-1,d);
-  if(!d||!mo||a<1900||dt.getFullYear()!==a||dt.getMonth()!==mo-1||dt.getDate()!==d){alert('Data do racha inválida. Use dia, mês e ano.');return}
-  if(!DB.hist)DB.hist=[];
-  DB.hist.unshift({data:a+'-'+('0'+mo).slice(-2)+'-'+('0'+d).slice(-2),champ:champ});
-  S.champ=champ;renderAwards();save();saveC();renderHist();
-  alert('Campeonato salvo! Campeão: '+champ);
-  if(confirm('Limpar o campeonato para começar um novo?')){S=newState(S.n,S.names);renderC();saveC()}
-}
-loadC();renderC();todayFill();
-var card=$('campCard');
-card.addEventListener('input',function(e){
-  var d=e.target.dataset,v=e.target.value;
-  if(d.nm!==undefined){S.names[+d.nm]=v;refreshNames();renderTable()}
-  else if(d.sc!==undefined){var p=d.sc.split('-'),k=p[0]+'-'+p[1];if(!S.scores[k])S.scores[k]=['',''];S.scores[k][+p[2]]=v;renderTable()}
-  else if(d.ex!==undefined){S.extras[+d.ex][d.f]=v}
-  else if(e.target.id==='campChamp'){S.champ=v;$('campChampShow').textContent=v?'🏆 '+v:''}
-  else if(e.target.id==='campCalca'){S.calca=v;$('campCalcaShow').textContent=v?'👖 '+v:''}
-  saveC();
-});
-card.addEventListener('click',function(e){
-  var b=e.target.closest('button');if(!b)return;
-  if(b.id==='campAddExtra'){S.extras.push({a:'',b:'',ha:'',hb:''});renderExtras()}
-  else if(b.dataset.delex!==undefined){S.extras.splice(+b.dataset.delex,1);renderExtras()}
-  else if(b.id==='campSugChamp'){S.champ=nm(standings().rows[0].t);renderAwards()}
-  else if(b.id==='campSugCalca'){var r=standings().rows;S.calca=nm(r[r.length-1].t);renderAwards()}
-  else if(b.id==='campSave'){saveChamp()}
-  else if(b.id==='campReset'){if(confirm('Limpar todo o campeonato (nomes, placares, extras, campeão)?')){S=newState(S.n);renderC()}}
-  saveC();
-});
-$('campN').addEventListener('change',function(){
-  var n=parseInt(this.value,10);if(n===S.n)return;
-  if(Object.keys(S.scores).length&&!confirm('Trocar a quantidade de times apaga os placares das rodadas. Continuar?')){this.value=S.n;return}
-  var o=S.names,ex=S.extras,ch=S.champ,ca=S.calca;S=newState(n,o);S.extras=ex;S.champ=ch;S.calca=ca;renderC();saveC();
-});
-})();
+        function updateRoleUI() {
+            const isAdmin = currentRole === 'ADMIN';
+            document.querySelectorAll(".admin-only").forEach(e => e.style.display = isAdmin ? 'block' : 'none');
+            document.querySelectorAll(".admin-only-nav").forEach(e => e.style.display = isAdmin ? 'flex' : 'none');
+        }
 
-/* ========= INÍCIO ========= */
-load();applyRole();renderAll();
-setInterval(renderInicio,30000);
-beat();setInterval(beat,20000);
-</script>
+        /* --- GALERIA SOCIAL --- */
+        function previewSocialPhoto(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    selectedSocialImageBase64 = e.target.result;
+                    document.getElementById("socialPreviewImg").src = selectedSocialImageBase64;
+                    document.getElementById("socialPreviewBox").style.display = "block";
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        async function submitPhotoToGallery() {
+            if (!selectedSocialImageBase64) { alert("Por favor, escolha uma foto primeiro!"); return; }
+            const tx = db.transaction("gallery", "readwrite");
+            tx.objectStore("gallery").add({ src: selectedSocialImageBase64, timestamp: new Date().getTime() });
+            tx.oncomplete = () => {
+                alert("Foto enviada para a galeria com sucesso!");
+                document.getElementById("socialPhotoInput").value = "";
+                document.getElementById("socialPreviewBox").style.display = "none";
+                selectedSocialImageBase64 = null;
+                renderGallery();
+            };
+        }
+
+        async function renderGallery() {
+            const gallery = await getAllFromStore("gallery");
+            const container = document.getElementById("socialGallery");
+            container.innerHTML = "";
+            if (gallery.length === 0) {
+                container.innerHTML = "<p style='color:var(--text-muted); font-size:0.8rem; grid-column: 1 / -1; text-align:center;'>Nenhuma foto cadastrada na galeria.</p>";
+                return;
+            }
+            gallery.reverse().forEach(img => {
+                const div = document.createElement("div");
+                div.className = "gallery-item";
+                div.innerHTML = `<img src="${img.src}" alt="Foto da Galeria"/>`;
+                container.appendChild(div);
+            });
+        }
+
+        /* --- CADASTRO E EDIÇÃO --- */
+        function uploadPlayerPhoto(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) { document.getElementById("pFoto").value = e.target.result; };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function openPlayerModal() {
+            document.getElementById("playerForm").reset();
+            document.getElementById("pId").value = "";
+            document.getElementById("pEstrelas").disabled = false;
+            document.getElementById("pSenhaLabel").innerText = "Senha de acesso:";
+            document.getElementById("modalPlayerTitle").innerText = "Cadastro do Integrante";
+            document.getElementById("playerModal").style.display = "flex";
+        }
+
+        function openMyProfile() {
+            if (currentRole === 'JOGADOR' && currentPlayerId) editPlayer(currentPlayerId);
+            else openPlayerModal();
+        }
+
+        async function editPlayer(id) {
+            if (currentRole === 'JOGADOR' && id !== currentPlayerId) return;
+            const players = await getAllFromStore("players");
+            const p = players.find(x => x.id === id);
+            if (!p) return;
+
+            document.getElementById("pId").value = p.id;
+            document.getElementById("pFoto").value = p.foto || "";
+            document.getElementById("pNome").value = p.nome;
+            document.getElementById("pApelido").value = p.apelido;
+            document.getElementById("pSenha").value = "";
+            document.getElementById("pSenhaLabel").innerText = "Nova senha (deixe em branco para manter):";
+            document.getElementById("pDiaNasc").value = p.diaNasc || "";
+            document.getElementById("pMesNasc").value = p.mesNasc || "";
+            document.getElementById("pAnoNasc").value = p.anoNasc || "";
+            document.getElementById("pPosicao").value = p.posicao;
+            document.getElementById("pEstrelas").value = p.estrelas;
+            // Jogador não altera o próprio nível técnico
+            document.getElementById("pEstrelas").disabled = (currentRole === 'JOGADOR');
+
+            document.getElementById("modalPlayerTitle").innerText = "Editar Integrante";
+            document.getElementById("playerModal").style.display = "flex";
+        }
+
+        document.getElementById("playerForm").onsubmit = async (e) => {
+            e.preventDefault();
+            const id = document.getElementById("pId").value;
+            const players = await getAllFromStore("players");
+            const apelido = document.getElementById("pApelido").value.trim();
+            const senha = document.getElementById("pSenha").value;
+
+            const duplicate = players.find(x => (x.apelido || "").trim().toLowerCase() === apelido.toLowerCase() && String(x.id) !== String(id));
+            if (duplicate) { alert("Já existe um jogador com esse apelido. Escolha outro."); return; }
+
+            const existing = id ? players.find(x => x.id === parseInt(id)) : null;
+            if (!existing && senha.length < 4) { alert("Defina uma senha com pelo menos 4 caracteres."); return; }
+            if (senha && senha.length < 4) { alert("A senha deve ter pelo menos 4 caracteres."); return; }
+
+            const pData = {
+                foto: document.getElementById("pFoto").value,
+                nome: document.getElementById("pNome").value,
+                apelido: apelido,
+                senhaHash: senha ? await hashText(senha) : (existing ? existing.senhaHash : undefined),
+                diaNasc: parseInt(document.getElementById("pDiaNasc").value),
+                mesNasc: parseInt(document.getElementById("pMesNasc").value),
+                anoNasc: parseInt(document.getElementById("pAnoNasc").value),
+                posicao: document.getElementById("pPosicao").value,
+                estrelas: (existing && currentRole === 'JOGADOR') ? existing.estrelas : parseInt(document.getElementById("pEstrelas").value),
+                mensalidade: existing ? existing.mensalidade : 10.00,
+                statusPagamento: existing ? existing.statusPagamento : 'INADIMPLENTE'
+            };
+
+            const tx = db.transaction("players", "readwrite");
+            const store = tx.objectStore("players");
+            if (existing) { pData.id = existing.id; store.put(pData); }
+            else { store.add(pData); }
+
+            tx.oncomplete = async () => {
+                closeModal("playerModal");
+                if (currentRole) {
+                    await refreshAllData();
+                    if (currentRole === 'JOGADOR') applySession({ role: 'JOGADOR', playerId: currentPlayerId });
+                    alert("Cadastro salvo com sucesso!");
+                } else {
+                    alert("Cadastro realizado! Agora faça login com seu apelido e senha.");
+                    document.getElementById("loginUser").value = apelido;
+                }
+            };
+        };
+
+        function renderMatchList(players, list) {
+            const listLinhaEl = document.getElementById("listLinha");
+            const listGoleiroEl = document.getElementById("listGoleiro");
+            listLinhaEl.innerHTML = ""; listGoleiroEl.innerHTML = "";
+
+            list.filter(item => item.confirmed).forEach((item) => {
+                const player = players.find(p => p.id === item.playerId);
+                if (!player) return;
+                const row = document.createElement("div");
+                row.className = "player-item";
+                const photoSrc = player.foto || "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+                row.innerHTML = `
+                    <div class="player-item-header">
+                        <div class="player-info-meta">
+                            <img src="${photoSrc}" class="player-avatar" alt="Foto"/>
+                            <div><strong>${escapeHtml(player.apelido)}</strong> <small style="color:var(--text-muted)">(${escapeHtml(player.nome)})</small></div>
+                        </div>
+                        <span class="status-pill pill-green">Confirmado</span>
+                    </div>`;
+                if (player.posicao === "Linha") listLinhaEl.appendChild(row);
+                else listGoleiroEl.appendChild(row);
+            });
+        }
+
+        function renderAdminPlayersList(players) {
+            const container = document.getElementById("adminPlayersList");
+            container.innerHTML = "";
+            players.forEach(p => {
+                const item = document.createElement("div");
+                item.className = "player-item";
+                const photoSrc = p.foto || "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+                let dataNascFmt = "Não informada";
+                if (p.diaNasc && p.mesNasc && p.anoNasc) dataNascFmt = `${String(p.diaNasc).padStart(2,'0')}/${String(p.mesNasc).padStart(2,'0')}/${p.anoNasc}`;
+                item.innerHTML = `
+                    <div class="player-item-header">
+                        <div class="player-info-meta">
+                            <img src="${photoSrc}" class="player-avatar" alt="Foto"/>
+                            <div><strong>${escapeHtml(p.apelido)}</strong> (${p.posicao})<br/><small style="color:var(--text-muted)">Nasc: ${dataNascFmt}</small></div>
+                        </div>
+                        <div><button class="btn btn-outline btn-sm" onclick="editPlayer(${p.id})"><i class="fa-solid fa-pen"></i></button></div>
+                    </div>`;
+                container.appendChild(item);
+            });
+        }
+
+        function renderFinancialList(players) {
+            const container = document.getElementById("financialList");
+            container.innerHTML = "";
+            const currentMonthName = monthNames[new Date().getMonth()];
+            const visible = currentRole === 'JOGADOR' ? players.filter(p => p.id === currentPlayerId) : players;
+
+            visible.forEach(p => {
+                const photoSrc = p.foto || "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+                const item = document.createElement("div");
+                item.className = "player-item";
+                item.innerHTML = `
+                    <div class="player-item-header">
+                        <div class="player-info-meta">
+                            <img src="${photoSrc}" class="player-avatar" alt="Foto"/>
+                            <div><strong>${escapeHtml(p.apelido)}</strong><br/><small style="color:var(--primary-green);">Mês: ${currentMonthName} — R$ 10,00</small></div>
+                        </div>
+                        <span class="status-pill pill-yellow">${p.statusPagamento || 'INADIMPLENTE'}</span>
+                    </div>`;
+                container.appendChild(item);
+            });
+        }
+
+        function renderAssiduidadeList(players, history) {
+            const container = document.getElementById("assiduidadeList");
+            container.innerHTML = "";
+            const visible = currentRole === 'JOGADOR' ? players.filter(p => p.id === currentPlayerId) : players;
+
+            visible.forEach(p => {
+                let dataNascFmt = "Não informada";
+                if (p.diaNasc && p.mesNasc && p.anoNasc) dataNascFmt = `${String(p.diaNasc).padStart(2,'0')}/${String(p.mesNasc).padStart(2,'0')}/${p.anoNasc}`;
+                const photoSrc = p.foto || "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+                const item = document.createElement("div");
+                item.className = "player-item";
+                item.innerHTML = `
+                    <div class="player-item-header">
+                        <div class="player-info-meta">
+                            <img src="${photoSrc}" class="player-avatar" alt="Foto"/>
+                            <div>
+                                <strong>${escapeHtml(p.apelido)}</strong> <small style="color:var(--text-muted)">(${escapeHtml(p.nome)})</small><br/>
+                                <small style="color:var(--text-muted)"><i class="fa-solid fa-cake-candles"></i> Nasc: ${dataNascFmt}</small>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-sm" onclick="editPlayer(${p.id})"><i class="fa-solid fa-pen"></i> Editar</button>
+                    </div>`;
+                container.appendChild(item);
+            });
+        }
+
+        function closeModal(id) { document.getElementById(id).style.display = "none"; }
+
+        function getAllFromStore(storeName) {
+            return new Promise((resolve) => {
+                const tx = db.transaction(storeName, "readonly");
+                const req = tx.objectStore(storeName).getAll();
+                req.onsuccess = () => resolve(req.result);
+            });
+        }
+
+        async function getSettings() {
+            const items = await getAllFromStore("settings");
+            const config = {};
+            items.forEach(i => config[i.key] = i.value);
+            return config;
+        }
+
+        window.onload = () => { initDB(); };
+    </script>
 </body>
 </html>
